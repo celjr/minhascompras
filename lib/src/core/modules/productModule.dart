@@ -1,4 +1,4 @@
-import 'package:minhascompras/src/core/utils/blocs/product_bloc/bloc_product.dart';
+import 'package:minhascompras/src/features/product/bloc/bloc_product.dart';
 import 'package:minhascompras/src/features/product/data/datasource/product_sql_datasource_imp.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +17,7 @@ import '../../features/product/domain/usecases/update_product/update_product_use
 import '../../features/product/domain/usecases/update_product/update_product_usecase_imp.dart';
 
 final productModule = [
-  Provider<ProductDatasource>(
-      create: (context) => ProductSqlDatasourceImp()),
+  Provider<ProductDatasource>(create: (context) => ProductSqlDatasourceImp()),
   Provider<ProductRepository>(
       create: (context) => ProductRepositoryImp(context.read())),
   Provider<GetAllProductsUsecase>(
@@ -31,6 +30,5 @@ final productModule = [
       create: (context) => GetProductByNameUsecaseImp(context.read())),
   Provider<UpdateProductUsecase>(
       create: (context) => UpdateProductUsecaseImp(context.read())),
-
-  Provider<BlocProduct>(create: (context) => BlocProduct(context.read()),)
+  Provider<BlocProduct>(create: (context) => BlocProduct(context.read<GetAllProductsUsecaseImp>(),context.read<SaveProductUsecaseImp>()))
 ];

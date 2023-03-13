@@ -38,9 +38,11 @@ class ProductSqlDatasourceImp implements ProductDatasource {
   Future<bool> save({required ProductEntity product}) async {
     db = await DB.instance.database;
     try {
-      db.rawInsert(
-          'INSERT INTO (name, descriptiom, id_category) VALUES("${product.name}", "${product.description}", ${product.category!.id ?? 0})');
+     var result = db.rawInsert(
+          'INSERT INTO (name, descriptiom, id_category) VALUES ("${product.name}", "${product.description}", ${product.category!.id ?? 0})');
+      if(result != 0){
       return true;
+      }else throw Exception('ERRO AO SALVAR NO BANCO');
     } catch (entities) {
       return false;
     }

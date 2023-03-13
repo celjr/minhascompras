@@ -14,6 +14,8 @@ class ProductRepositoryImp implements ProductRepository {
     List<ProductEntity> products = [];
     var data = await _datasource.getAllProducts();
     products = data.map((e) => ProductDto.fromMap(e)).toList();
+
+    print (data);
     return products;
   }
 

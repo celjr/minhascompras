@@ -1,4 +1,5 @@
-import '../../../../features/product/domain/entities/product_entity.dart';
+import 'package:minhascompras/src/features/product/domain/entities/product_entity.dart';
+
 
 abstract class ProductsState {
   final List<ProductEntity> products;
